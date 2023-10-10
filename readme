@@ -1,0 +1,71 @@
+1. npm init -y
+-y takes all default values
+
+2. install express
+npm install express
+
+3. create main application entry point like server.js / app.js / index.js
+
+4. create a good/decent folder structure
+src:
+  config:
+  controllers:
+  middlewares:
+  models:
+  routes:
+  utils:
+apps.js
+package-lock.json
+package.json
+readme.md
+Dockerfile
+Jenkinsfile
+
+5.inside apps.js paste 
+const express = require('express');
+
+const app = express();
+const PORT = 3000;
+
+app.get('/', (req, res) => {
+  res.send('Application is started')
+})
+
+app.listen(PORT, () => {
+  console.log(`Application listening on port ${PORT}`)
+})
+
+6. install nodemon to automatically restart application
+npm install --save-dev nodemon //to install nodemon as a development dependency
+
+npm install -g nodemon //to install nodemon globally
+
+7. install mysql2 to connect mysql db, sequelize to create models, body-parser to accept json
+npm install mysql2 sequelize body-parser
+
+8. to validate multiple parameters
+const requiredFields = ['tenantrecno', 'domainrecno', 'description'];
+
+// Check if any of the required fields are missing
+const missingFields = requiredFields.filter(field => req.body[field] === undefined);
+
+if (missingFields.length > 0) {
+  return res.status(400).json({ error: `The following fields are required: ${missingFields.join(', ')}` });
+}
+
+9. to validate one parameter
+if (tenantrecno === undefined) {
+  return res.status(400).json({ error: 'tenantrecno is required' });
+}
+
+10. install cors middleware
+npm install cors
+define cors details in corsMiddleware.js File
+
+
+11. Create .env file to save credentials
+To use a .env file we have to use the dotenv package.
+npm install dotenv
+
+require('dotenv').config(); // Load .env file
+use this in file where we want to use .env
