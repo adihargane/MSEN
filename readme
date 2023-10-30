@@ -40,6 +40,9 @@ npm install --save-dev nodemon //to install nodemon as a development dependency
 
 npm install -g nodemon //to install nodemon globally
 
+change package.json file
+"start": "nodemon -L app.js", add this in script
+
 7. install mysql2 to connect mysql db, sequelize to create models, body-parser to accept json
 npm install mysql2 sequelize body-parser
 
@@ -69,3 +72,25 @@ npm install dotenv
 
 require('dotenv').config(); // Load .env file
 use this in file where we want to use .env
+
+
+12. Create Dockerfile
+FROM node:18
+
+WORKDIR /app
+
+COPY package.json .
+
+RUN npm install
+
+COPY . ./
+
+EXPOSE 3000
+
+CMD [ "npm", "run", "start" ]
+
+13. create .dockerignore file: not to add non-necessary folder in docker container
+
+14. run commands:
+  docker build -t <image_name> .
+  docker run -p 3000:3000 -d --name <container_name> <image_name></image_name>

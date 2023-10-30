@@ -1,10 +1,11 @@
-const express = require('express');
+const express = require("express");
 // const db = require('./src/config/db.js');
 // const bodyParser = require('body-parser');
-const corsMiddleware = require('./src/middlewares/corsMiddleware.js');
-const vehiclemasterRoute = require('./src/routes/vehiclemasterRoute.js');
-const wfeventtrnRoute = require('./src/routes/wfeventtrnRoute.js');
-require('dotenv').config();
+const corsMiddleware = require("./src/middlewares/corsMiddleware.js");
+const vehiclemasterRoute = require("./src/routes/vehiclemasterRoute.js");
+const wfeventtrnRoute = require("./src/routes/wfeventtrnRoute.js");
+const drivermasterRoute = require("./src/routes/drivermasterRoute.js");
+require("dotenv").config();
 
 const app = express();
 
@@ -21,13 +22,15 @@ app.use(
     extended: false,
   })
 );
+
 app.use(express.json());
 
-app.use('/api/v1/', vehiclemasterRoute);
-app.use('/api/v1/', wfeventtrnRoute);
+app.use("/api/v1/", vehiclemasterRoute);
+app.use("/api/v1/", wfeventtrnRoute);
+app.use("/api/v1/", drivermasterRoute);
 
-app.get('/', (req, res) => {
-  res.send('Application is started');
+app.get("/", (req, res) => {
+  res.send("Application is started");
 });
 
 // // Check if the database connection is established
