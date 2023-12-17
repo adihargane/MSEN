@@ -9,8 +9,11 @@ npm install express
 4. create a good/decent folder structure
 src:
   config:
+    db.js
+    sequelize.js
   controllers:
   middlewares:
+    corsMiddleware.js
   models:
   routes:
   utils:
@@ -20,9 +23,16 @@ package.json
 readme.md
 Dockerfile
 Jenkinsfile
+project.conf
+default.conf
+.gitignore
+.dockerignore
+.env
+readme
 
 5.inside apps.js paste 
 const express = require('express');
+const sequelize = require('./src/config/sequelize')
 
 const app = express();
 const PORT = 3000;
@@ -94,3 +104,14 @@ CMD [ "npm", "run", "start" ]
 14. run commands:
   docker build -t <image_name> .
   docker run -p 3000:3000 -d --name <container_name> <image_name></image_name>
+
+15. create multiple env files for multiple environment
+  .env.dev
+  .env.uat
+  .env.prod
+
+16. instal env-cmd
+  npm install env-cmd
+
+17. change in package.json
+  add new scripts for each env
